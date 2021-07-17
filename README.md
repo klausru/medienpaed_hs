@@ -1,4 +1,10 @@
-# Health Sciences Theme
+# Theme medienpaed_hs
+
+based on https://github.com/pkp/healthSciences/ with lots of changes
+
+works on OJS 3.3.07
+
+This is the original readme:
 
 An official theme for [OJS 3.1.1+](https://pkp.sfu.ca/ojs/) designed for health science journals or any journal that wants a clean, modern appearance.
 
