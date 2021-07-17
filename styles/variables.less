@@ -1,0 +1,107 @@
+/**
+ * @file styles/variables.less
+ *
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief LESS variable that are used by the theme
+ *
+ */
+
+
+
+// Colour palette
+
+@light-grey:        #F7F7F7;
+@bg-shade:          @light-grey;
+@text-light:        @light-grey;
+@bg-light-shade:     @light-grey;
+
+@faded-grey:        #ccc;
+@mid-grey:          #757575;
+@dark-grey:         #333;
+
+@text-bg-base: @dark-grey;
+
+
+@black:             #000;
+@primary-light:     #f07a05;
+@primary:           #29335c;
+@primary-text:      #29335c;
+@warning:           #ca1031;
+@contrast: 			 #f07a05;
+@accent:           @contrast;
+
+// Typefaces
+@font-sans:         'Open Sans', sans-serif;
+@font-serif:        'Roboto Slab', serif;
+
+// Font sizes
+@page-header-size:   1.5rem;
+@link-size: 1rem;
+
+@fa-font-path:        "https://use.fontawesome.com/releases/v5.6.1/webfonts";
+
+
+// from default theme
+
+// Border colors
+@bg-border-color:        @bg-shade;
+@bg-base-border-color:   rgba(255,255,255,0.1);
+
+//
+// Spacing
+//
+// The baseline size should be used to achieve consistent vertical rhythm. All
+// vertical margins, padding, line-height and block heights should use a
+// multiple of this baseline (or half). Where appropriate, horizontal
+// spacings should also use this baseline. However, in some cases with inline
+// elements it is more appropriate to use an `em` spacing.
+//
+@base:                   10px;
+@half:                   @base / 2;
+@double:                 @base * 2;
+@triple:                 @base * 3;
+@quadruple:              @base * 4;
+@quintuple:              @base * 5;
+
+//
+// Typography
+//
+
+@font-heading:           @font-serif;
+@font-site-title:        @font-heading;
+@font-sml:               13px;
+@line-sml:               @double;
+@font-base:              14px;
+@line-base:              @double;
+@line-base-large:        @line-base + 5; // large blocks of text
+@font-bump:              16px;
+@line-bump:              @double;
+@font-lead:              18px;
+@line-lead:              @triple;
+@font-header:            24px;
+@line-header:            @triple;
+
+// Font weights
+@normal:                 400;
+@bold:                   700;
+
+//
+// Borders
+//
+@bg-border:              1px solid @bg-border-color;
+@form-border:            1px solid rgba(0,0,0,0.4);
+@radius:                 3px;
+
+//
+// Screen width breakpoints
+//
+@screen-phone:                480px;
+@screen-tablet:               768px;
+@screen-tablet-container:     @screen-tablet - (@double * 2);
+@screen-desktop:              992px;
+@screen-desktop-container:    @screen-desktop - (@double * 2);
+@screen-lg-desktop:           1200px;
+@screen-lg-desktop-container: @screen-lg-desktop - (@double * 2);

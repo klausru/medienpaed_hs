@@ -1,0 +1,298 @@
+.main-header {
+	background-color: @light-grey;
+
+	.container {
+		position: relative;
+	}
+}
+
+#userNav,
+.navbar-logo,
+#languageLargeNav {
+	display: none;
+}
+
+	.mobile-logo {
+		display: inline-block;
+		height: 40px;
+		width: auto;				
+	}
+
+.navbar-nav {
+	
+	flex-wrap: wrap;
+
+	.nav-link,
+	.dropdown-item {
+		padding: 0.5em;
+		font-size: 15px;
+		font-weight: 600;
+		text-transform: none;
+		font-family: @font-serif;
+	}
+
+	.dropdown-menu {
+		padding: 0;
+	}
+
+	.dropdown-item {
+		padding-left: 1.5em;
+	}
+}
+
+.navbar-brand {
+	max-width: 75%;
+
+	img {
+		width: auto;
+		height: auto;
+		max-height: 2em;
+		max-width: 100%;
+	}
+}
+
+// Journals without a logo
+.navbar-logo-text {
+	display: block;
+	width: 100%;
+	white-space: normal;
+	margin-left: -0.5em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	border: 1px solid transparent;
+	font-family: @font-serif;
+	font-size: 14px;
+
+	&:hover {
+		color: @dark-grey;
+	}
+}
+
+#languageSmallNav {
+	margin-top: 1em;
+
+	.btn,
+	.dropdown-item {
+		font-size: 12px;
+	}
+
+	.dropdown-item {
+
+		&:hover,
+		&:focus {
+			color: #fff;
+		}
+	}
+}
+
+.navbar-light .navbar-nav {
+
+	.nav-link,
+	.dropdown-item {
+		color: @dark-grey;
+
+		&:hover,
+		&:focus {
+			outline: 0;
+			background: @primary;
+			color: #fff;
+		}
+	}
+
+	.dropdown-menu {
+		background: transparent;
+		border: none;
+	}
+}
+
+.badge {
+	font-size: 0.85em;
+}
+
+
+@media (min-width: 992px) {
+
+	.main-header .container {
+		padding: 1rem 1rem 0 1rem;
+	}
+
+	.navbar {
+		padding: 0 0 0 0;
+		flex-wrap: wrap;
+	}
+
+	#userNav,
+	.navbar-logo,
+	#languageLargeNav {
+		display: block;
+	}
+	
+
+
+	.mobile-logo,
+	.navbar-brand,
+	#primaryNav-userNav,
+	#languageSmallNav {
+		display: none;
+	}
+
+	.navbar-logo {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		max-width: 100%;
+		text-align: center;
+		background-color: @primary;
+
+		img {
+			max-height: 75px;
+		}
+
+		a {
+			color: @dark-grey;
+
+			&:hover {
+				color: @dark-grey;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.navbar-logo-text {
+		font-size: 25px;
+	}
+
+	#primaryNav {
+		justify-content: flex-end;
+		position: relative;
+		width: 100%;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+
+		.nav-item {
+			position: static;
+			white-space: nowrap;
+		}
+
+		.nav-link,
+		.dropdown-item {
+			line-height: 1.5rem;
+			text-transform: none;
+			vertical-align: middle;
+		}
+
+		.nav-link {
+			padding: 1rem;
+
+			&:hover,
+			&:focus {
+				background: transparent;
+				color: @dark-grey;
+				padding-bottom: 0.5rem;
+				border-bottom: 3px solid #f07a05;
+				display: inline-block;
+			}
+		}
+
+		.dropdown-item {
+			padding: 0.5rem;
+
+			&:hover,
+			&:focus {
+				background: transparent;
+				color: @dark-grey;
+				padding-bottom: 0.5rem;
+				border-bottom: 3px solid #f07a05;
+				display: inline-block;
+			}
+		}
+
+		.dropdown-menu.show {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-content: center;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			margin: 0;
+			padding: 1rem;
+			background-color: @light-grey;
+			border-radius: 0;
+		}
+
+		.dropdown-item {
+			color: @dark-grey;
+			text-align: center;
+			width: initial;
+
+			&:focus,
+			&:hover {
+				background: transparent;
+				color: @dark-grey;
+				padding-bottom: 0.5rem;
+				border-bottom: 3px solid #f07a05;
+				display: inline-block;
+			}
+
+		}
+	}
+
+	
+	
+	#userNav {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+
+		.nav-item {
+			display: inline-block;
+		}
+	}
+
+	.language-toggle {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+	}
+
+	#userNav .dropdown-menu,
+	.language-toggle .dropdown-menu {
+		padding: 0.5em;
+	}
+
+	#userNav .nav-link,
+	.language-toggle .dropdown-toggle {
+		color: #fff;
+		border: 1px solid transparent;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.5em;
+		text-transform: none;
+
+		&:hover,
+		&:focus {
+			outline: 0;
+			border-color: @light-grey;
+			border: 1px solid transparent;
+		}
+	}
+
+	#userNav .dropdown-item,
+	.language-toggle .dropdown-item {
+		padding-left: 0.5em;
+		font-size: 12px;
+		color: #fff;
+		text-transform: none;
+
+		&:hover,
+		&:focus {
+			color: #fff;
+			border-color: @light-grey;
+			border: 1px solid transparent;
+		}
+	}
+}

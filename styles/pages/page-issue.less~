@@ -1,0 +1,76 @@
+/**
+ * @file styles/pages/page-issue.less
+ *
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief issue page, excluding table of content
+ */
+
+.page-issue-details {
+	margin-top: 3rem;
+}
+
+.page-issue-date {
+	margin-top: 2rem;
+}
+
+.page-issue-doi {
+	margin-top: 1rem;
+}
+
+
+	.page-issue-date,
+	.page-issue-doi,
+	.page-issue-doi a {
+		font-size: 14px;
+		color: @mid-grey;
+	}
+
+.page-issue-description + .page-issue-galleys,
+.page-issue-cover {
+	margin-top: 3rem;
+}
+
+.page-issue-description .h2 {
+	font-size: 1.35rem;
+	text-align: left;
+	margin-bottom: 1rem;
+}
+
+.page-issue-cover {
+	display: block;
+/*	max-width: 350px;*/
+	max-height: auto;
+}
+
+@media (min-width: 992px) {
+
+	.page-issue-description-wrapper {
+		padding: 3rem;
+		background: @light-grey;
+	}
+
+	.page-issue-cover {
+		box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+		margin: auto;
+	}
+
+
+	.page-issue-date,
+	.page-issue-doi {
+		margin-top: 1rem;
+	}
+	
+	
+	.button-PoD {
+		display: block;
+		width: 300px;
+			}
+		
+	.button-PoD:hover,
+.button-PoD:focus {
+  filter: grayscale(100%);
+}
+}
