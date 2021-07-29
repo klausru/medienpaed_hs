@@ -21,9 +21,9 @@
 
 {include file="frontend/components/header.tpl" pageTitleTranslated=$section->getLocalizedTitle()}
 
-<div class="container page-section">
+<div class="container page-section page_section_{$sectionPath|escape}">
 	<div class="page-header">
-		<h1>{$section->getLocalizedTitle()|escape}</h1>
+		<h1 class="page_title">{$section->getLocalizedTitle()|escape}</h1>
 	</div>
 	<div class="row justify-content-md-center">
 		{if $sectionDescription}
@@ -31,17 +31,34 @@
 				<div class="section-description">{$sectionDescription}</div>
 			</div>
 		{/if}
+		
+		
 		<div class="col-12">
 			<div class="page-content">
-				{if !$articles|@count}
-					<div class="alert alert-danger">
-						{translate key="plugins.generic.browseBySection.emptySection"}
-					</div>
-				{else}
-						{foreach from=$articles item=article}
-							{include file="frontend/objects/article_summary.tpl" section=null showDatePublished=true hideGalleys=false}
-						{/foreach}
-				{/if}
+			
+			{if $articleGroups|@count}
+            {foreach from=$articleGroups item=group} 
+            {if $group.key}
+                <div class="cmp_article_header" id="browse_by_section_group_{$group.key|escape}">
+                {$group.key|escape}
+                </div>
+            {/if}
+		
+			{foreach from=$group.articles item=article}
+				<div>
+					{* TODO remove section=null workaround. article_summary.tpl expects a specific section array. See issue_toc.tpl. *}
+					{include file="frontend/objects/article_summary.tpl" section=null showDatePublished=true hideGalleys=false}
+				</div>
+			{/foreach}
+		
+		{/foreach}
+			
+		{else}
+                <div class="alert alert-danger">
+					{translate key="plugins.generic.browseBySection.emptySection"}
+				</div>
+				
+        {/if}
 			</div>
 		</div>
 	</div>

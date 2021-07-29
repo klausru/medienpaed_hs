@@ -29,12 +29,38 @@
 {/capture}
 
 <div class="card issue-summary">
-	{if $issue->getLocalizedCoverImageUrl()}
-		<a href="{$baseUrl}/issue/view/{$issue->getBestIssueId()}">
-			<img class="card-img-top page-issue-cover" src="{$issue->getLocalizedCoverImageUrl()|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
-		</a>
-	{/if}
-	<div class="card-body">
+
+			{* Cover *}
+{assign var=myvar value=1|mt_rand:50}
+    
+			
+			{if ($issue->getData('isThemeIssue')) && (!in_array($issue->getVolume(), array(37, 20)))}
+			<a href="{$baseUrl}/issue/view/{$issue->getBestIssueId()}">
+                <img class="card-img-top page-issue-cover" src="http://localhost/public/journals/1/cover/cover_mountains{$issue->getVolume()}({$myvar}).svg" alt="{$issue->getLocalizedCoverImageAltText()|escape}">
+            </a>
+
+			
+            {else}
+            
+            <a href="{$baseUrl}/issue/view/{$issue->getBestIssueId()}">
+                <img class="card-img-top page-issue-cover" src="{$issue->getLocalizedCoverImageUrl()|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
+            </a>
+			{/if}
+
+			
+			
+
+{** backup Cover 
+*	{if $issue->getLocalizedCoverImageUrl()}
+*		<a href="{$baseUrl}/issue/view/{$issue->getBestIssueId()}">
+*			<img class="card-img-top page-issue-cover" src="{$issue->getLocalizedCoverImageUrl()|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
+*		</a>
+*	{/if}
+*}
+ 
+ 
+ 
+<div class="card-body">
 		<{$heading} class="h2 card-title issue-summary-series">
 			<a href="{$baseUrl}/issue/view/{$issue->getBestIssueId()}">
 				{$issueTitle|escape}

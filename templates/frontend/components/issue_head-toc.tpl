@@ -72,18 +72,41 @@
 						{/if}
 					</div>
 				{/if}
-			{/foreach}					
+			{/foreach}
 
 				</div>
 			{/if}
 			
-			{if $issue->getLocalizedCoverImageUrl()}
-				<div class="col-lg-3">
+			
+			{* Cover *}
+			{assign var=myvar value=1|mt_rand:50}
+			{if ($issue->getData('isThemeIssue')) && (!in_array($issue->getVolume(), array(37, 20)))}
+			
+			<div class="col-lg-3">
 					<a href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
-						<img class="img-fluid page-issue-cover" src="{$issue->getLocalizedCoverImageUrl()|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
+					
+					{** semi-auto Cover *}
+					<img class="img-fluid page-issue-cover" src="http://localhost/public/journals/1/cover/cover_mountains{$issue->getVolume()}({$myvar}).svg" alt="{$issue->getLocalizedCoverImageAltText()|escape}">
+					
+					
+					{** dyn Cover - use this only on localhost
+					*<div id="Container{$issue->getVolume()}" class="coverData img-fluid page-issue-cover" issueNr="{$issue->getVolume()}" issueTitle="{$issue->getLocalizedTitle()}" issueEds="{$issue->getLocalizedDescription()|strip_tags:false}"></div>
+                    *<script src="http://localhost/plugins/themes/medienpaed_hs/js/colorsets.js"></script>
+                    *<script src="http://localhost/plugins/themes/medienpaed_hs/js/sketch_mountains.js"></script>
+                    *}
+                    
+                    </a>
+                </div>
+                    
+            {else}
+    				<div class="col-lg-3">
+					<a href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
+						<img class="img-fluid page-issue-cover" src="{$issue->getLocalizedCoverImageUrl()|escape}" {if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
 					</a>
 				</div>
+    
 			{/if}
+						
 		</div><!-- .row -->
 
 		<div class="row{if !$issue->getLocalizedDescription() || !$issue->getLocalizedCoverImageUrl()} issue-wrapper{/if}">
