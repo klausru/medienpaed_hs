@@ -36,7 +36,9 @@
 			
 			{if ($issue->getData('isThemeIssue')) && (!in_array($issue->getVolume(), array(37, 20)))}
 			<a href="{$baseUrl}/issue/view/{$issue->getBestIssueId()}">
-                <img class="card-img-top page-issue-cover" src="http://localhost/public/journals/1/cover/cover_mountains{$issue->getVolume()}({$myvar}).svg" alt="{$issue->getLocalizedCoverImageAltText()|escape}">
+                {** <img class="card-img-top page-issue-cover" src="http://localhost/public/journals/1/cover/cover_mountains{$issue->getVolume()}({$myvar}).svg" alt="{$issue->getLocalizedCoverImageAltText()|escape}"> *}
+                {** The generative Cover plugin *}
+                    {include file="frontend/objects/cover.tpl"}
             </a>
 
 			

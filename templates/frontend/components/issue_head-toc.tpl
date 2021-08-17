@@ -85,9 +85,13 @@
 			<div class="col-lg-3">
 					<a href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
 					
-					{** semi-auto Cover *}
-					<img class="img-fluid page-issue-cover" src="http://localhost/public/journals/1/cover/cover_mountains{$issue->getVolume()}({$myvar}).svg" alt="{$issue->getLocalizedCoverImageAltText()|escape}">
+					{** The generative Cover plugin *}
+                    {include file="frontend/objects/cover.tpl"}
 					
+					
+					{** semi-auto Cover 
+					*<img class="img-fluid page-issue-cover" src="http://localhost/public/journals/1/cover/cover_mountains{$issue->getVolume()}({$myvar}).svg" alt="{$issue->getLocalizedCoverImageAltText()|escape}">
+					*}
 					
 					{** dyn Cover - use this only on localhost
 					*<div id="Container{$issue->getVolume()}" class="coverData img-fluid page-issue-cover" issueNr="{$issue->getVolume()}" issueTitle="{$issue->getLocalizedTitle()}" issueEds="{$issue->getLocalizedDescription()|strip_tags:false}"></div>
