@@ -44,9 +44,19 @@
 					{assign var=authorGivenName value=$author->getLocalizedGivenName()}
 					{assign var=authorFamilyName value=$author->getLocalizedFamilyName()}
 					{assign var=authorName value=$author->getFullName(false, true)}
+					{assign var=authororcid value=$author->getOrcid()}
 
 					{strip}
-						<a href="{url op="authors" path="view" givenName=$authorGivenName familyName=$authorFamilyName affiliation=$authorAffiliation country=$authorCountry authorName=$authorName}">{$authorName|escape}</a>
+						<a href="{url op="authors" path="view" givenName=$authorGivenName familyName=$authorFamilyName affiliation=$authorAffiliation country=$authorCountry authorName=$authorName orcid=$authororcid}">{$authorName|escape}</a>
+								{if $authororcid}
+									<a class="orcidImage" href="{$author->getOrcid()|escape}" target="_blank">
+										{if $orcidIcon}
+											{$orcidIcon}
+										{else}
+											<img src="{$baseUrl}/{$orcidImage}">
+										{/if}
+									</a>
+								{/if}
 						{if $authorAffiliation}, {$authorAffiliation|escape}{/if}
 						{if $lastAuthorName == $authorName && $lastAuthorCountry != $authorCountry}
 							{* Disambiguate with country if necessary (i.e. if names are the same otherwise) *}
