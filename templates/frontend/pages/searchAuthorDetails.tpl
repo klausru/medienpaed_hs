@@ -12,6 +12,7 @@
 	{assign var="pageTitle" value="search.authorDetails"}
 	{include file="frontend/components/header.tpl"}
 {/strip}
+{assign var=authororcid value=$smarty.get.orcid|replace:"https://www.medienpaed.com/search/authors/":""}
 
 <div class="container page-author-details">
 	<div class="row page-header justify-content-md-center">
@@ -22,7 +23,7 @@
 	<div class="row justify-content-md-center">
 		<div class="col-md-8">
 			<div class="page-content" id="authorDetails">
-				<h3 class="author-details-author text-lg-center">{$authorName|escape}{if $affiliation}, {$affiliation|escape}{/if}{if $country}, {$country|escape}{/if}</h3>
+				<h3 class="author-details-author text-lg-center">{$authorName|escape}{if $authororcid} <a class="orcidImage" href="{$authororcid}" target="_blank"><img src="{$baseUrl}/{$orcidImage}"></a>{/if}{if $affiliation}, {$affiliation|escape}{/if}{if $country}, {$country|escape}{/if}</h3>
 				<ul class="author-details-articles">
 					{foreach from=$submissions item=article}
 						{assign var=issueId value=$article->getCurrentPublication()->getData('issueId')}
