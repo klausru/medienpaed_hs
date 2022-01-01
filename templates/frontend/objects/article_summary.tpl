@@ -15,30 +15,52 @@
  * @uses $primaryGenreIds array List of file genre ids for primary file types
  *}
 {assign var=articlePath value=$article->getBestId()}
+{assign var=publication value=$article->getCurrentPublication()}
 
 {if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
 	{assign var="showAuthor" value=true}
 {/if}
 
-<div class="row justify-content-left page-issue-details"> 
-
+<div class="row justify-content-left page-issue-details">
 
 		<div class="cover col-lg-2">
-			{if $article->getLocalizedData('coverImage')}
-			<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
+		{* Article/Issue cover image *}
+		<script src="{$baseUrl}/{$pdfThumbnailjs}" data-pdfjs-src="{$baseUrl}/plugins/generic/pdfJsViewer/pdf.js/build/pdf.js"></script>
+			{if $issue->getBestIssueId() == '28'}
+				<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
 				{assign var="coverImage" value=$article->getCurrentPublication()->getLocalizedData('coverImage')}
-				<img class="img-fluid page-issue-cover"
-					src="{$article->getCurrentPublication()->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
-					alt="{$coverImage.altText|escape|default:''}"
-				>
-			</a>
-			{elseif	!$article->getLocalizedData('coverImage')}
-			{**<i class="far fa-file-pdf page-issue-cover" style="font-size: 8rem; color: #29335c;"></i>*}
-			<img class="img-fluid page-issue-cover" src="{$baseUrl}/{$missingCover}" >
-			
+					<img class="img-fluid page-issue-cover"
+						src="{$article->getCurrentPublication()->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
+						alt="Cover:: {$publication->getAuthorString($userGroups)}: {$publication->getLocalizedFullTitle()|escape}"
+						>
+				</a>
+
+
+			{else $primaryGalleys}
+			{foreach from=$article->getGalleys() item=galley}
+        		{assign var="file" value=$galley->getFile()}
+					{if !$galley->getRemoteUrl() && !($file && in_array($file->getGenreId(), $primaryGenreIds))}
+						{continue}
+					{/if}
+				<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
+					<img class="img-fluid page-issue-cover"
+						data-pdf-thumbnail-file="{include file="frontend/objects/pdfThumbnail_link.tpl" parent=$article galley=$galley}"
+						
+						{if $publication->getLocalizedData('coverImage')}
+						{assign var="coverImage" value=$article->getCurrentPublication()->getLocalizedData('coverImage')}
+						src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
+								
+						{else}
+						src="{$baseUrl}/{$missingCover}"
+						{/if}
+						alt="Cover:: {$publication->getAuthorString($userGroups)}: {$publication->getLocalizedFullTitle()|escape}"
+					>
+				</a>
+			{/foreach}
+
 			{/if}
 		</div>
-	
+
 
 <div class="article-summary col-lg-7">
 
