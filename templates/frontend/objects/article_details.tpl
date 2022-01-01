@@ -204,27 +204,53 @@
 		<div class="col-lg-3 order-lg-1">
 			<div class="article-details-sidebar">
 
-				{* Article/Issue cover image *}
-				{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}
-					<div class="article-details-cover">
-						{if $publication->getLocalizedData('coverImage')}
-							{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+				<div class="article-details-cover">
+					{* Article/Issue cover image *}
+					<script src="{$baseUrl}/{$pdfThumbnailjs}" data-pdfjs-src="{$baseUrl}/plugins/generic/pdfJsViewer/pdf.js/build/pdf.js"></script>
+					{if $issue->getBestIssueId() == '28'}
+					{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+						<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
 							<img
 								class="img-fluid page-issue-cover"
 								src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
-								alt="{$coverImage.altText|escape|default:''}"
+								alt="Cover:: {$publication->getAuthorString($userGroups)}: {$publication->getLocalizedFullTitle()|escape}"
 							>
-						{else}
-							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
-								<img
-									class="img-fluid page-issue-cover"
-									src="{$issue->getLocalizedCoverImageUrl()|escape}"
-									alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}"
-								>
-							</a>
-						{/if}
-					</div>
-				{/if}	
+						</a>
+					{elseif ($issue->getData('isjahrbuch')) || in_array($issue->getVolume(), array(37, 20))}
+						<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
+							<img
+								class="img-fluid page-issue-cover"
+								src="{$issue->getLocalizedCoverImageUrl()|escape}"
+								alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}"
+							>
+						</a>
+
+					{elseif ($section->getId() == '1') && ($issue->getData('isThemeIssue')) && (!in_array($issue->getVolume(), array(37, 20)))}
+						<a href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
+						{include file="frontend/objects/cover.tpl"}
+						</a>
+
+					{else $primaryGalleys}
+					{foreach from=$primaryGalleys item="galley"}
+        				{assign var="pdf" value=$galley->getFile()}
+						<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
+							<img
+								class="img-fluid page-issue-cover"
+								data-pdf-thumbnail-file="{include file="frontend/objects/pdfThumbnail_link.tpl" parent=$article galley=$galley}"
+						
+								{if $publication->getLocalizedData('coverImage')}
+								{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+								src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
+								
+								{else}
+								src="{$baseUrl}/{$missingCover}"
+								{/if}
+								alt="Cover:: {$publication->getAuthorString($userGroups)}: {$publication->getLocalizedFullTitle()|escape}"
+							>
+						</a>
+					{/foreach}			
+					{/if}
+				</div>
 			</div>
 		</div>	
 	</div><!-- .page-header -->
