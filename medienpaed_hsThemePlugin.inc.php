@@ -173,6 +173,7 @@ class medienpaed_hsThemePlugin extends ThemePlugin {
 			$crossrefImage = $this->getPluginPath() . '/templates/images/member-badge-member.svg';
 			$medienpaedSM = $this->getPluginPath() . '/templates/images/pageHeaderLogoImage_de_DE.svg';
 			$missingCover = $this->getPluginPath() . '/templates/images/missing-cover.jpg';
+			$pdfThumbnailjs = $this->getPluginPath() . '/js/pdfThumbnails.js';
 									
 			$templateMgr->assign(array(
 				'languageToggleLocales' => $locales,
@@ -185,6 +186,7 @@ class medienpaed_hsThemePlugin extends ThemePlugin {
 				'crossrefImage' => $crossrefImage,
 				'medienpaedSM' => $medienpaedSM,
 				'missingCover' => $missingCover,
+				'pdfThumbnailjs' => $pdfThumbnailjs,
 				
 			));
 		}
